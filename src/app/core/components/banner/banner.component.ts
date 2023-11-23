@@ -8,7 +8,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class BannerComponent implements OnInit, OnDestroy {
   array = [
     {
-      img: "assets/banner2.jpg",
+      img: "assets/banner4.jpg",
       text1: "Design To Transform",
       text2: "Their Household Chores",
       btn: "Discover Now"
@@ -20,7 +20,7 @@ export class BannerComponent implements OnInit, OnDestroy {
       btn: "Discover Now"
     },
     {
-      img: "assets/banner3.jpg",
+      img: "assets/banner2.jpg",
       text1: "Design To Transform",
       text2: "Their Household Chores",
       btn: "Discover Now"

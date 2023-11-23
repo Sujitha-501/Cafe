@@ -1,0 +1,91 @@
+/* For use in src/lib/core/theming/_palette.scss */
+@import '@angular/material/theming';
+@include mat-core();
+
+
+$custom-primary-color: (
+  50 : #e6e1e1,
+  100 : #c0b5b5,
+  200 : #978484,
+  300 : #6d5252,
+  400 : #4d2d2d,
+  500 : #2e0808,
+  600 : #290707,
+  700 : #230606,
+  800 : #1d0404,
+  900 : #120202,
+  A100 : #ff5353,
+  A200 : #ff2020,
+  A400 : #ec0000,
+  A700 : #d30000,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$custom-accent-color: (
+  50 : #f6ece1,
+  100 : #e9cfb4,
+  200 : #daaf83,
+  300 : #cb8f51,
+  400 : #bf772b,
+  500 : #b45f06,
+  600 : #ad5705,
+  700 : #a44d04,
+  800 : #9c4303,
+  900 : #8c3202,
+  A100 : #ffccb8,
+  A200 : #ffa785,
+  A400 : #ff8252,
+  A700 : #ff7039,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+$custom-typography: mat-typography-config($font-family: " 'Montserrat', sans-serif",
+    $headline: mat-typography-level(32px, 48px, 700),
+    $body-1: mat-typography-level(16px, 24px, 500));
+@include angular-material-typography($custom-typography);
+// $app-primary: mat-palette($indigo-palette);
+$app-primary: mat-palette($custom-primary-color);
+$app-accent: mat-palette($custom-accent-color);
+$app-theme: mat-light-theme($app-primary, $app-accent);
+
+:root {
+  // background-color: var(--primary-color);
+  --primary-color: #2e0808;
+  --primary-light-color: #5a0404;
+  --primary-dark-color: #1f0101;
+  --secondary-color: #ed6c1a;
+  --secondary-light-color: #ff9d4c;
+  --secondary-dark-color: #b43d00;
+  --main-font-family: "Ebrima", "Ebrima-Regular";
+  --link-text-color: #0772b3;
+  --link-text-hover-color: #015374;
+  --gray40-color: #666;
+  --primary-color100: #b3cbd5;
+}
