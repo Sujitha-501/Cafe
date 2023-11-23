@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class BestSellerComponent {
 
+  productList = [
+   { imageUrl : './assets/coffee1.jpg' , name: 'Coffee1'},
+   { imageUrl : './assets/coffee2.jpg' , name: 'Coffee2'},
+   { imageUrl : './assets/coffee3.jpg' , name: 'Coffee3'}
+  ]
+
 }

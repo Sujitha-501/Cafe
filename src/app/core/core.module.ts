@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BestSellerComponent } from './components/best-seller/best-seller.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MaterialModule } from '../material/material.module';
+import { BannerComponent } from './components/banner/banner.component';
 
 
 
@@ -11,7 +12,8 @@ import { MaterialModule } from '../material/material.module';
   declarations: [
     HomeComponent,
     BestSellerComponent,
-    DashboardComponent
+    DashboardComponent,
+    BannerComponent
   ],
   imports: [
     CommonModule,

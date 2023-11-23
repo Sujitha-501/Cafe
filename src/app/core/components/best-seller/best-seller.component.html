@@ -1,1 +1,14 @@
-<p>best-seller works!</p>
+<div>
+  <div class="container" fxLayoutAlign="center center">
+    <div class="productlist-outer" fxLayout="row" fxLayoutGap="3%">
+      <div *ngFor="let item of productList" fxLayout="column" fxLayoutAlign="center center">
+        <div class="product-img">
+          <img [src]="item?.imageUrl" alt="no-image" />
+        </div>
+        <div class="product-name">
+          <span>{{item?.name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
