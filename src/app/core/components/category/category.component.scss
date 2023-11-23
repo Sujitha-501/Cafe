@@ -1,0 +1,34 @@
+.header{
+  color: rgb(105, 21, 21);
+  font-size: 35px;
+  text-align: center;
+}
+
+.categoy-img {
+  height: 240px;
+  width: 280px;
+  position: relative;
+}
+
+.categoy-img img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.categoy-name {
+  z-index: 1;
+  background-color: rgb(105, 21, 21);
+  width: 75%;
+  padding: 20px;
+  text-align: center;
+  margin-top: -35px;
+
+  span {
+    font-size: 18px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    color: white;
+  }
+}

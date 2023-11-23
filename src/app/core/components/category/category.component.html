@@ -1,0 +1,22 @@
+<div>
+  <div fxLayoutAlign="center center" fxLayout="column" style="padding: 50px;  background-color: #ffe4bd;">
+    <h1 class="header">Feature Categories</h1>
+    <div fxLayout="row" fxLayoutGap="2%" style="margin: 20px 40px;">
+      <div fxFlex="38%" fxLayoutAlign="center center">
+        <div style="height: 600px; width: 100%;">
+          <img style="height: 100%; width: 100%;object-fit: cover;" src="/assets/coffee4.jpg" alt="no-image"/>
+        </div>
+      </div>
+      <div fxFlex fxLayout="row wrap" fxLayoutAlign="center center" >
+        <div *ngFor="let item of categories" fxLayout="column" style="margin: 20px;" fxLayoutAlign="center center">
+          <div class="categoy-img" fxLayout="column">
+            <img [src]="item?.imageUrl" alt="no-image" />
+          </div>
+          <div class="categoy-name">
+            <span>{{item?.name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,3 +2,44 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+  border-color: rgba(255, 244, 244, 0.12) !important;
+  border-radius: 0 !important;
+}
+
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  width: 200% !important;
+}
+
+.mat-mdc-form-field-infix {
+  min-height: 40px !important;
+}
+
+.mdc-notched-outline{
+  height: 84% !important;
+}
+
+.snackbar-success.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: green;
+  --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, 0.87);
+  --mat-snack-bar-button-color: #ff4081;
+}
+
+.snackbar-error.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: red;
+  --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, 0.87);
+  --mat-snack-bar-button-color: #ff4081;
+}
+
+.snackbar-info.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: blue;
+  --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, 0.87);
+  --mat-snack-bar-button-color: #ff4081;
+}

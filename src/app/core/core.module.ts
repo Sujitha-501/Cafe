@@ -5,6 +5,8 @@ import { BestSellerComponent } from './components/best-seller/best-seller.compon
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MaterialModule } from '../material/material.module';
 import { BannerComponent } from './components/banner/banner.component';
+import { CategoryComponent } from './components/category/category.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -13,7 +15,9 @@ import { BannerComponent } from './components/banner/banner.component';
     HomeComponent,
     BestSellerComponent,
     DashboardComponent,
-    BannerComponent
+    BannerComponent,
+    CategoryComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
