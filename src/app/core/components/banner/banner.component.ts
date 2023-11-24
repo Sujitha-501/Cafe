@@ -1,4 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SignupComponent } from 'src/app/auth/components/signup/signup.component';
 
 @Component({
   selector: 'app-banner',
@@ -31,6 +33,8 @@ export class BannerComponent implements OnInit, OnDestroy {
   interval: any;
   imgAnimation: boolean = false;
 
+  constructor(private dialog: MatDialog) { }
+
   ngOnInit(): void {
     this.slider();
   }
@@ -52,6 +56,12 @@ export class BannerComponent implements OnInit, OnDestroy {
     this.selectedIndex = index;
     this.slider();
   } 
+
+  openSignupDialog() {
+    const dialogRef = new MatDialogConfig();
+    dialogRef.width= "500px";
+    this.dialog.open(SignupComponent, dialogRef)
+  }
 
   ngOnDestroy() {
     clearInterval(this.interval);

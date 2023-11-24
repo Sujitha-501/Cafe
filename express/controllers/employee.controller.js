@@ -1,14 +1,5 @@
 const Signup = require('../models').signup;
 
-const signUp = async function (req, res) {
-  let err;
-  let body = req.body;
-  console.log('signUp: ', body);
-  if (err) return ReE(res, err, 422);
-  return ReS(res, { body });
-}
-module.exports.signUp = signUp;
-
 const getDetails = async function (req, res) {
   let err;
   [err, response] = await to(Signup.findAll());

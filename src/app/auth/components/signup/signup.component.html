@@ -1,0 +1,29 @@
+<div fxLayoutAlign="center center">
+  <div class="container" fxLayout="column" fxLayoutAlign="center center" style="text-align: center;">
+    <h1 mat-dialog-title style="font-size: 30px; color: #2e0808;">SignUp Here</h1>
+    <div mat-dialog-content style="overflow: hidden;">
+      <form [formGroup]="signupForm">
+        <div fxLayout="column">
+          <mat-form-field appearance="fill">
+            <input matInput type="text" placeholder="your name" formControlName="name">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input matInput type="text" placeholder="email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input matInput type="text" placeholder="contactNumber" formControlName="contactNumber">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input matInput type="text" placeholder="password" formControlName="password">
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+    <div mat-dialog-actions>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5%">
+      <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="onRegister()">Register</button>
+    </div>
+    </div>
+  </div>
+</div>

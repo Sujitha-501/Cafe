@@ -62,8 +62,12 @@ body {
 .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
 .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
 .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
-  border-color: rgba(221, 205, 205, 0.12) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
   border-radius: 0 !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #ffe4bd !important;
 }
 
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {

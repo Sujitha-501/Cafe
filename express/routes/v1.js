@@ -10,20 +10,20 @@ const UserAccountController = require('../controllers/userAccount.controller');
 const CategoryController = require('../controllers/category.controller');
 const ProductsController = require('../controllers/products.controller');
 router.post('/refreshToken', UserAccountController.refreshToken);
-router.post('/signUp', EmployeeController.signUp);
 // Customer
 router.post('/login', UserAccountController.login);
-router.post('/getCustomerDetails', EmployeeController.getCustomerDetails);
-router.post('/updateCustomer', EmployeeController.updateCustomer);
-router.get('/getDetails', EmployeeController.getDetails);
+// Based on roles
+router.post('/getCustomerDetails', passport.authenticate('jwt', { session: false }), EmployeeController.getCustomerDetails);
+router.post('/updateCustomer', passport.authenticate('jwt', { session: false }), EmployeeController.updateCustomer);
+router.get('/getDetails', passport.authenticate('jwt', { session: false }), EmployeeController.getDetails);
 // Category 
-router.post('/createCategory', CategoryController.createCategory);
-router.get('/getCategory', CategoryController.getCategory);
-router.post('/updateCategory', CategoryController.updateCategory);
+router.post('/createCategory', passport.authenticate('jwt', { session: false }), CategoryController.createCategory);
+router.get('/getCategory', passport.authenticate('jwt', { session: false }),  CategoryController.getCategory);
+router.post('/updateCategory', passport.authenticate('jwt', { session: false }), CategoryController.updateCategory);
 // Product
-router.post('/createProduct', ProductsController.createProduct);
-router.get('/getProduct', ProductsController.getProduct);
-router.post('/deleteProduct', ProductsController.deleteProduct);
-router.post('/updateProduct', ProductsController.updateProduct);
+router.post('/createProduct', passport.authenticate('jwt', { session: false }), ProductsController.createProduct);
+router.get('/getProduct', passport.authenticate('jwt', { session: false }), ProductsController.getProduct);
+router.post('/deleteProduct', passport.authenticate('jwt', { session: false }), ProductsController.deleteProduct);
+router.post('/updateProduct', passport.authenticate('jwt', { session: false }), ProductsController.updateProduct);
 
 module.exports = router;
