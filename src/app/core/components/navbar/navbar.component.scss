@@ -1,0 +1,70 @@
+/* nav-drawer-pin.component.scss */
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav-width {
+  width: 225px;
+  // background-color: #111;
+}
+
+.active {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.image {
+  height: 125px;
+  width: 100%;
+}
+
+img{
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+.example-app-name{
+  color: primary;
+}
+mat-icon{
+  margin-right: 20px;
+  // color: white;
+}
+
+span{
+  font-size: 18px;
+  // color: white;
+}
+
+.custom-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+}
+
+.menu-button {
+  transition: 300ms ease-in-out;
+  transform: rotate(0deg);
+  align-items: end;
+  margin-left: auto;
+}
+.menu-button.rotated {
+  transform: rotate(180deg);
+}
+.submenu {
+  overflow-y: hidden;
+  transition: transform 300ms ease;
+  transform: scaleY(0);
+  transform-origin: top;
+  padding-left: 30px;
+}
+
+.submenu.expanded {
+  transform: scaleY(1);
+}
+
+// ::ng-deep .submenu a span span{
+//   color: white !important;
+// }
+
+

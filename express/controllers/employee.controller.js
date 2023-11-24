@@ -1,5 +1,15 @@
 const Signup = require('../models').signup;
 
+const signup = async function (req, res) {
+  let err;
+  let body = req.body;
+  console.log('body:',req.body);
+  [err, customer] = await to(Signup.create(body));
+  if (err) return ReE(res, err, 422);
+  return ReS(res, { customer });
+}
+module.exports.signup = signup;
+
 const getDetails = async function (req, res) {
   let err;
   [err, response] = await to(Signup.findAll());

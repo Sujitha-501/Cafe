@@ -24,7 +24,9 @@ export class SnackbarService {
         message: message,
         icon: property?.icon,
       },
-      duration: duration ? duration : 3000,
+      duration: duration ? duration : 3000, 
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
       panelClass: panelClass ? panelClass : property?.panelClass
     })
   }

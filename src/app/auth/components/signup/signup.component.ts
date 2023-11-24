@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
@@ -21,7 +20,7 @@ export class SignupComponent implements OnInit {
   error!: boolean;
   constructor(private router: Router,
               private snackbarService: SnackbarService,
-              private dialogRef: MatDialogRef<SignupComponent>,
+              private userService: UserService,
               private ngxService: NgxUiLoaderService,
               private authService: AuthService) {}
 
@@ -37,23 +36,13 @@ export class SignupComponent implements OnInit {
   }
 
   onRegister(){
-    console.log('clicked')
     if(this.signupForm.valid) {
       console.log('Form: ', this.signupForm.value);
       this.ngxService.start();
-      this.authService.signIn(this.signupForm.value).subscribe((response: any) => {
-        if (response && response['user']) {
-          console.log('response: ', response);
-          this.ngxService.stop();
-          this.snackbarService.openSnackbar('Registered Successfully', 'Success');
-          this.router.navigate(['/app']);
-        }
-      }, (err) => {
-        if (err.error && err.error.error) {
-          this.errorMessage = err.error.error;
-          this.error = true;
-        };
-
+      this.userService.signup(this.signupForm.value).subscribe((res: any) => {
+        console.log('res:',res);
+        this.snackbarService.openSnackbar('Register Successfully', 'Success');
+        this.ngxService.stop();
       })
     }
     }

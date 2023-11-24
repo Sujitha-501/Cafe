@@ -9,6 +9,7 @@ import { CategoryComponent } from './components/category/category.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -19,7 +20,8 @@ import { AuthModule } from '../auth/auth.module';
     DashboardComponent,
     BannerComponent,
     CategoryComponent,
-    FooterComponent
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,

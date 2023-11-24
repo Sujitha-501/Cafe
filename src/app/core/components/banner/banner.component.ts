@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { LoginComponent } from 'src/app/auth/components/login/login.component';
 import { SignupComponent } from 'src/app/auth/components/signup/signup.component';
 
 @Component({
@@ -61,6 +62,12 @@ export class BannerComponent implements OnInit, OnDestroy {
     const dialogRef = new MatDialogConfig();
     dialogRef.width= "500px";
     this.dialog.open(SignupComponent, dialogRef)
+  }
+
+  openLoginDialog() {
+    const dialogRef = new MatDialogConfig();
+    dialogRef.width= "400px";
+    this.dialog.open(LoginComponent, dialogRef)
   }
 
   ngOnDestroy() {

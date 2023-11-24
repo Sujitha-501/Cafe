@@ -8,5 +8,7 @@ export class UserService {
 
   constructor(private httpService: HttpRoutingService) { }
 
-  
+  signup(data: any) {
+    return this.httpService.postMethod('signup',data);
+  }
 }
