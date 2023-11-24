@@ -9,5 +9,9 @@
   "DATA_SAVED": "Data Saved Successfully",
   "DATA_UPDATED": "Data Updated Successfully",
   "DELETE": "Are you sure you want to delete?",
-  "CANCEL": "Are you sure you want to cancel?"
+  "CANCEL": "Are you sure you want to cancel?",
+  "REGISTER": "Registered Successfully",
+  "LOGIN": "Login Successfully",
+  "NAME": "Please Enter a valid Name",
+  "NUMBER": "Please Enter a valid Contact Number"
 }

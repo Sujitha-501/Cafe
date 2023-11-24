@@ -1,4 +1,7 @@
 <div fxLayoutAlign="center center">
+  <div style="width: fit-content; padding: 5px; position: absolute;top: 0;right: 0;">
+    <mat-icon style="color:#2e0808" [mat-dialog-close]="false">close</mat-icon>
+  </div>
   <div class="container" fxLayout="column" fxLayoutAlign="center center" style="text-align: center;">
     <h1 mat-dialog-title style="font-size: 30px; color: #2e0808;">Login Here</h1>
     <div mat-dialog-content style="overflow: hidden;">
@@ -6,18 +9,30 @@
         <div fxLayout="column">
           <mat-form-field appearance="fill">
             <input matInput type="text" placeholder="email" formControlName="email">
+            <mat-error *ngIf="loginForm?.get('email')?.hasError('required')">
+              {{message?.FILED_REQUIRD}}
+            </mat-error>
+            <mat-error *ngIf="loginForm?.get('email')?.hasError('email')">
+              {{message?.INVALID_EMAIL}}
+            </mat-error>
+            <mat-error *ngIf="loginForm?.get('email')?.hasError('pattern')">
+              {{message?.INVALID_EMAIL}}
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <input matInput type="text" placeholder="password" formControlName="password">
+            <mat-error *ngIf="loginForm?.get('password')?.hasError('required')">
+              {{message?.FILED_REQUIRD}}
+            </mat-error>
           </mat-form-field>
         </div>
       </form>
     </div>
     <div mat-dialog-actions>
-      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5%">
-      <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
-      <button mat-raised-button color="primary" [disabled]="!loginForm.valid" [mat-dialog-close]="true" (click)="onRegister()">Login</button>
-    </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <button mat-raised-button color="primary" [disabled]="!loginForm.valid" [mat-dialog-close]="true"
+          (click)="onRegister()">Login</button>
+      </div>
     </div>
   </div>
 </div>

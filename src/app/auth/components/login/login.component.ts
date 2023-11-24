@@ -18,17 +18,18 @@ export class LoginComponent {
   messages!: Observable<any>;
   errorMessage!: string;
   error!: boolean;
+  message: any;
   constructor(private router: Router,
               private snackbarService: SnackbarService,
-              private dialogRef: MatDialogRef<SignupComponent>,
               private ngxService: NgxUiLoaderService,
               private authService: AuthService) {}
 
   ngOnInit(): void {
       this.loginForm = new FormGroup({
-        email: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]),
-        password: new FormControl(null),
+        email: new FormControl(null, [Validators.required,Validators.required, Validators.pattern('[a-zA-Z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]),
+        password: new FormControl(null, Validators.required),
       });
+      this.authService.messages.subscribe(res => this.message = res);
   }
 
   onRegister(){
@@ -39,7 +40,7 @@ export class LoginComponent {
         if (response && response['user']) {
           console.log('response: ', response);
           this.ngxService.stop();
-          this.snackbarService.openSnackbar('Login Successfully', 'Success');
+          this.snackbarService.openSnackbar(this.message.LOGIN , 'Success');
           this.router.navigate(['/cafe']);
         }
       }, (err) => {

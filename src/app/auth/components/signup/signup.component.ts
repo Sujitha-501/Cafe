@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   messages!: Observable<any>;
   errorMessage!: string;
   error!: boolean;
+  message: any;
   constructor(private router: Router,
               private snackbarService: SnackbarService,
               private userService: UserService,
@@ -25,11 +26,12 @@ export class SignupComponent implements OnInit {
               private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.authService.messages.subscribe(res => this.message = res);
       this.signupForm = new FormGroup({
-        name: new FormControl(null, [Validators.required]),
-        email: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]),
+        name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]{2,20}')]),
+        email: new FormControl(null, [Validators.required,Validators.required, Validators.pattern('[a-zA-Z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]),
         contactNumber: new FormControl(null, [Validators.required, Validators.pattern('^[e0-9]{10,10}$')]),
-        password: new FormControl(null),
+        password: new FormControl(null, Validators.required),
         role: new FormControl('user'),
         status: new FormControl('active')
       });
@@ -41,7 +43,7 @@ export class SignupComponent implements OnInit {
       this.ngxService.start();
       this.userService.signup(this.signupForm.value).subscribe((res: any) => {
         console.log('res:',res);
-        this.snackbarService.openSnackbar('Register Successfully', 'Success');
+        this.snackbarService.openSnackbar(this.message.REGISTER, 'Success');
         this.ngxService.stop();
       })
     }
