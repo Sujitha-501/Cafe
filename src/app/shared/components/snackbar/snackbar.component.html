@@ -1,0 +1,11 @@
+<div fxLayout="row" fxLayoutGap="20px">
+  <div fxFlex="30px" fxLayoutAlign="start center">
+    <mat-icon>{{data?.icon}}</mat-icon>
+  </div>
+  <div fxFlex fxLayoutAlign="start center">
+    <div> {{data?.message}}</div>
+  </div>
+  <div class='but' fxFlex="50px" fxLayoutAlign="end end">
+    <mat-icon (click)="onclose()" class="clear">clear</mat-icon>
+  </div>
+</div>

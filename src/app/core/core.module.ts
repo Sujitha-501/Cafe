@@ -7,6 +7,7 @@ import { MaterialModule } from '../material/material.module';
 import { BannerComponent } from './components/banner/banner.component';
 import { CategoryComponent } from './components/category/category.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -21,7 +22,8 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ]
 })
 export class CoreModule { }
