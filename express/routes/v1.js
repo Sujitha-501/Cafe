@@ -19,10 +19,12 @@ router.post('/updateCustomer', passport.authenticate('jwt', { session: false }),
 router.get('/getDetails', passport.authenticate('jwt', { session: false }), EmployeeController.getDetails);
 // Category 
 router.post('/createCategory', passport.authenticate('jwt', { session: false }), CategoryController.createCategory);
+router.get('/getCategoryCount', passport.authenticate('jwt', { session: false }), CategoryController.getCategoryCount);
 router.get('/getCategory', passport.authenticate('jwt', { session: false }),  CategoryController.getCategory);
 router.post('/updateCategory', passport.authenticate('jwt', { session: false }), CategoryController.updateCategory);
 // Product
 router.post('/createProduct', passport.authenticate('jwt', { session: false }), ProductsController.createProduct);
+router.get('/getProductCount', passport.authenticate('jwt', { session: false }), ProductsController.getProductCount);
 router.get('/getProduct', passport.authenticate('jwt', { session: false }), ProductsController.getProduct);
 router.post('/deleteProduct', passport.authenticate('jwt', { session: false }), ProductsController.deleteProduct);
 router.post('/updateProduct', passport.authenticate('jwt', { session: false }), ProductsController.updateProduct);

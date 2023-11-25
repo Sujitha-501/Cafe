@@ -1,6 +1,7 @@
 const Products = require('../models').products;
 const Category = require('../models').category;
 
+// To Create the product
 const createProduct = async function (req, res) {
   let err;
   let body = req.body;
@@ -10,6 +11,16 @@ const createProduct = async function (req, res) {
 }
 module.exports.createProduct = createProduct;
 
+// To get the product count
+const getProductCount = async function (req, res) {
+  let err;
+  [err, productCount] = await to(Products.count({}));
+  if (err) return ReE(res, err, 422);
+  return ReS(res, { productCount });
+}
+module.exports.getProductCount = getProductCount;
+
+// To fetch all product
 const getProduct = async function (req, res) {
   let err;
   [err, response] = await to(Products.findAll({
@@ -22,6 +33,7 @@ const getProduct = async function (req, res) {
 }
 module.exports.getProduct = getProduct;
 
+// To update the product
 const updateProduct = async function (req, res) {
   let err;
   let body = req.body;
@@ -35,6 +47,7 @@ const updateProduct = async function (req, res) {
 }
 module.exports.updateProduct = updateProduct;
 
+// To delete the product
 const deleteProduct = async function (req, res) {
   let err;
   let body = req.body;

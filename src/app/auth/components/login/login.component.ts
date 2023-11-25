@@ -41,7 +41,7 @@ export class LoginComponent {
           console.log('response: ', response);
           this.ngxService.stop();
           this.snackbarService.openSnackbar(this.message.LOGIN , 'Success');
-          this.router.navigate(['/cafe']);
+          this.router.navigate(['/cafe/dashboard']);
         }
       }, (err) => {
         if (err.error && err.error.error) {

@@ -8,35 +8,35 @@ import { DialogComponent } from '../components/dialog/dialog.component';
 export class DialogService {
 
   constructor(public dialogServices: MatDialog) { }
-  openConfirmationDialog(config: {
-    message: string,
-    className?: string,
-    component: any,
-  }) {
-    const dialogRef = this.dialogServices.open(DialogComponent, {
-      data: {
-        header: 'Confirmation',
-        content: config.message,
-        actionType: 'Confirmation',
-        component: config.component, 
-      },
-      panelClass: config.className,
-      autoFocus: false,
-    });
-
-    return dialogRef;
-  }
-  // openConfirmationDialog(message: string, className?: string) {
+  // openConfirmationDialog(config: {
+  //   message: string,
+  //   className?: string,
+  //   component: any,
+  // }) {
   //   const dialogRef = this.dialogServices.open(DialogComponent, {
   //     data: {
   //       header: 'Confirmation',
-  //       content: message,
-  //       actionType: 'Confirmation'
+  //       content: config.message,
+  //       actionType: 'Confirmation',
+  //       component: config.component, 
   //     },
-  //     autoFocus: false
+  //     panelClass: config.className,
+  //     autoFocus: false,
   //   });
+
   //   return dialogRef;
-  // };
+  // }
+  openConfirmationDialog(message: string, className?: string) {
+    const dialogRef = this.dialogServices.open(DialogComponent, {
+      data: {
+        header: 'Confirmation',
+        content: message,
+        actionType: 'Confirmation'
+      },
+      autoFocus: false
+    });
+    return dialogRef;
+  };
 
   openSuccessDialog(message: string, className?: string) {
     const dialogRef = this.dialogServices.open(DialogComponent, {

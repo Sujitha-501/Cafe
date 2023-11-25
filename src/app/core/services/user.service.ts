@@ -11,4 +11,12 @@ export class UserService {
   signup(data: any) {
     return this.httpService.postMethod('signup',data);
   }
+
+  getCategoryCount() {
+    return this.httpService.getMethod('getCategoryCount');
+  }
+
+  getProductCount() {
+    return this.httpService.getMethod('getProductCount');
+  }
 }

@@ -38,7 +38,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
-            <input matInput type="text" placeholder="password" formControlName="password">
+            <input matInput type="password" placeholder="password" formControlName="password">
             <mat-error *ngIf="signupForm?.get('password')?.hasError('required')">
               {{message?.FILED_REQUIRD}}
             </mat-error>
