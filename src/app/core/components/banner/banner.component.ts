@@ -11,21 +11,21 @@ import { SignupComponent } from 'src/app/auth/components/signup/signup.component
 export class BannerComponent implements OnInit, OnDestroy {
   array = [
     {
-      img: "assets/banner4.jpg",
-      text1: "Design To Transform",
-      text2: "Their Household Chores",
+      img: "assets/banner2.jpg",
+      text1: "To increase mental alertness",
+      text2: "Coffee can help protect skin from photoaging",
       btn: "Discover Now"
     },
     {
       img: "assets/banner1.jpg",
-      text1: "Design To Transform",
-      text2: "Their Household Chores",
+      text1: "Evergreen coffee plant",
+      text2: "Arabica beans have a sweeter, more complex flavor",
       btn: "Discover Now"
     },
     {
-      img: "assets/banner2.jpg",
-      text1: "Design To Transform",
-      text2: "Their Household Chores",
+      img: "assets/banner3.jpg",
+      text1: "Coffee beans seeds",
+      text2: "Giving you some of the best coffee you've ever had",
       btn: "Discover Now"
     }
   ]

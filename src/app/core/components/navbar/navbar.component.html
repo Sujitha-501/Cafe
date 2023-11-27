@@ -1,6 +1,15 @@
 <mat-toolbar color="primary" class="example-toolbar">
   <button mat-icon-button (click)="sidenav.toggle()"><mat-icon style="color: rgb(255, 255, 255);">menu</mat-icon></button>
   <h1 class="example-app-name">MyApp</h1>
+  <span class="example-spacer"></span>
+  <button [matMenuTriggerFor]="beforeMenu" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before" fxLayoutAlign="center center">
+    <button style="justify-content: center;" mat-menu-item>Change Password <span class="material-icons">change_circle</span></button>
+    <mat-divider></mat-divider>
+    <button style="justify-content: center;" mat-menu-item routerLink="" (click)="logOut()">Logout <span class="material-icons">logout</span></button>
+  </mat-menu>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
