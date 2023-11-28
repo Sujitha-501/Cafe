@@ -39,10 +39,8 @@ export class SignupComponent implements OnInit {
 
   onRegister(){
     if(this.signupForm.valid) {
-      console.log('Form: ', this.signupForm.value);
       this.ngxService.start();
       this.userService.signup(this.signupForm.value).subscribe((res: any) => {
-        console.log('res:',res);
         this.snackbarService.openSnackbar(this.message.REGISTER, 'Success');
         this.ngxService.stop();
       })

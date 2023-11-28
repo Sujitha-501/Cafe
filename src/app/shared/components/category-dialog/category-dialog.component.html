@@ -1,0 +1,24 @@
+<mat-toolbar color="primary" fxLayoutAlign="space-between center">
+  <h2 style="color: white;">{{dialogAction}} Category</h2>
+    <mat-icon style="color:#ffffff" [mat-dialog-close]="false">close</mat-icon>
+</mat-toolbar>
+<div class="container" fxLayout="column" fxLayoutAlign="center center" style="text-align: center;">
+<div mat-dialog-content>
+  <form [formGroup]="categoryForm">
+    <div fxLayout="column">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="name" formControlName="name">
+        <mat-error *ngIf="categoryForm?.get('name')?.hasError('required')">
+          {{message?.FILED_REQUIRD}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-stroked-button color="primary" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="onCreateCategory()"[disabled]="!(categoryForm.valid && categoryForm.dirty)">{{data ? 'Update' : 'Save'}}</button>
+  </div>
+</div>
+</div>

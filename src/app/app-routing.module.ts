@@ -7,6 +7,7 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { LoginGuard } from './auth/services/login.guard';
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
+import { ManageCategoryComponent } from './core/components/manage-category/manage-category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'cafe', component: NavbarComponent, canActivate: [AuthGuard] , children : [
-    { path: 'dashboard', component: DashboardComponent}
+    { path: 'dashboard', component: DashboardComponent},
+    { path: 'category', component: ManageCategoryComponent}
   ]}
 
 ];

@@ -19,4 +19,20 @@ export class UserService {
   getProductCount() {
     return this.httpService.getMethod('getProductCount');
   }
+
+  getCategory() {
+    return this.httpService.getMethod('getCategory');
+  }
+
+  createCategory(data: any) {
+    return this.httpService.postMethod('createCategory', data);
+  }
+
+  updateCategory(data: any) {
+    return this.httpService.postMethod('updateCategory', data);
+  }
+
+  getOneCategory(data: any) {
+    return this.httpService.postMethod('getOneCategory',data);
+  }
 }

@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 
 
 
@@ -21,7 +22,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BannerComponent,
     CategoryComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    ManageCategoryComponent
   ],
   imports: [
     CommonModule,

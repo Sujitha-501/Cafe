@@ -18,11 +18,9 @@ export class DashboardComponent {
   ngOnInit() {
     this.ngxService.start();
     this.userService.getCategoryCount().subscribe((res: any) => {
-      console.log('Category Count:', res);
       this.categoryCount = res.categoryCount
     });
     this.userService.getProductCount().subscribe((res: any) => {
-      console.log('Product Count:', res);
       this.productCount = res.productCount
       this.ngxService.stop();
     });

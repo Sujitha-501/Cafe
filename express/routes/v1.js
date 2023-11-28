@@ -20,6 +20,7 @@ router.get('/getDetails', passport.authenticate('jwt', { session: false }), Empl
 // Category 
 router.post('/createCategory', passport.authenticate('jwt', { session: false }), CategoryController.createCategory);
 router.get('/getCategoryCount', passport.authenticate('jwt', { session: false }), CategoryController.getCategoryCount);
+router.post('/getOneCategory', passport.authenticate('jwt', { session: false }), CategoryController.getOneCategory);
 router.get('/getCategory', passport.authenticate('jwt', { session: false }),  CategoryController.getCategory);
 router.post('/updateCategory', passport.authenticate('jwt', { session: false }), CategoryController.updateCategory);
 // Product

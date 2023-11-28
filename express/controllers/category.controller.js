@@ -19,6 +19,18 @@ const getCategoryCount = async function (req, res) {
 }
 module.exports.getCategoryCount = getCategoryCount;
 
+const getOneCategory = async function (req, res) {
+  let err;
+  [err, categoryDetails] = await to(Category.findOne({
+    where: {
+      id: req.body.id
+    }
+  }));
+  if (err) return ReE(res, err, 422);
+  return ReS(res, { categoryDetails });
+}
+module.exports.getOneCategory = getOneCategory;
+
 // Fetch all categories
 const getCategory = async function (req, res) {
   let err;

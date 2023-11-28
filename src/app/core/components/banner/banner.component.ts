@@ -59,9 +59,9 @@ export class BannerComponent implements OnInit, OnDestroy {
   } 
 
   openSignupDialog() {
-    const dialogRef = new MatDialogConfig();
-    dialogRef.width= "500px";
-    this.dialog.open(SignupComponent, dialogRef)
+    const dialogRef = this.dialog.open(SignupComponent, {
+    width: '400px',
+  });
   }
 
   openLoginDialog() {
