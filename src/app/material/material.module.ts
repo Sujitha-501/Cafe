@@ -26,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 
 @NgModule({
   declarations: [],
@@ -39,6 +40,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FlexLayoutModule,
     RouterModule,
     MatFormFieldModule,
+    MatSlideToggleModule,
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
@@ -75,6 +77,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatTableModule,
     MatSortModule,
     MatButtonToggleModule,
+    MatSlideToggleModule,
     MatMenuModule,
     MatCardModule,
     MatPaginatorModule,

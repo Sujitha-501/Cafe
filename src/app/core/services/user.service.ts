@@ -35,4 +35,8 @@ export class UserService {
   getOneCategory(data: any) {
     return this.httpService.postMethod('getOneCategory',data);
   }
+
+  getProduct() {
+    return this.httpService.getMethod('getProduct');
+  }
 }

@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CategoryDialogComponent } from 'src/app/shared/components/category-dialog/category-dialog.component';
 import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-manage-category',
@@ -19,6 +20,7 @@ export class ManageCategoryComponent implements OnInit{
 
     displayedColumns: string[] = ['id', 'name', 'edit'];
     dataSource: any;
+    @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   ngOnInit() {
     this.ngxService.start();
@@ -29,6 +31,7 @@ export class ManageCategoryComponent implements OnInit{
     this.userService.getCategory().subscribe((res: any) => {
       this.ngxService.stop();
       this.dataSource = new MatTableDataSource(res.response);
+      this.dataSource.paginator = this.paginator;
     })
   }
 

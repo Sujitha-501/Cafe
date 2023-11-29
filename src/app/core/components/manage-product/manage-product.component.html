@@ -2,9 +2,8 @@
   <mat-card fxLayout="row">
     <mat-card-content style="width: 100%;">
       <div fxLayout="row" fxLayoutAlign="space-between center">
-        <span style="font-size: 25px;font-weight: 500;"> Manage Category</span>
-        <button style="width: fit-content;" mat-flat-button color="primary" (click)="onAddCategory()">Add
-          Category</button>
+        <span style="font-size: 25px;font-weight: 500;"> Manage Products</span>
+        <button style="width: fit-content;" mat-flat-button color="primary">Add Products</button>
       </div>
     </mat-card-content>
   </mat-card>
@@ -18,10 +17,16 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
-      <!-- Id Column -->
+      <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="categoryId">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
       </ng-container>
 
       <!-- Name Column -->
@@ -30,21 +35,31 @@
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
-      <!-- Edit Column -->
-      <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef> Edit </th>
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+
+      <!-- Active Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Active </th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon color="primary" (click)="onEditCategory(element)">edit</mat-icon>
+          <mat-slide-toggle color="primary" [checked]="checked"></mat-slide-toggle>
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon color="primary">edit</mat-icon>
+          <mat-icon color="primary">delete</mat-icon>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
     </table>
     <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
       aria-label="Select page"></mat-paginator>
