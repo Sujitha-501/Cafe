@@ -26,6 +26,7 @@ router.post('/updateCategory', passport.authenticate('jwt', { session: false }),
 // Product
 router.post('/createProduct', passport.authenticate('jwt', { session: false }), ProductsController.createProduct);
 router.get('/getProductCount', passport.authenticate('jwt', { session: false }), ProductsController.getProductCount);
+router.post('/getOneProduct', passport.authenticate('jwt', { session: false }), ProductsController.getOneProduct);
 router.get('/getProduct', passport.authenticate('jwt', { session: false }), ProductsController.getProduct);
 router.post('/deleteProduct', passport.authenticate('jwt', { session: false }), ProductsController.deleteProduct);
 router.post('/updateProduct', passport.authenticate('jwt', { session: false }), ProductsController.updateProduct);

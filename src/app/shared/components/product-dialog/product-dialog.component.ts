@@ -18,6 +18,8 @@ export class ProductDialogComponent implements OnInit {
   categoryList : any = [];
   onAddProduct = new EventEmitter();
   onEditProduct = new EventEmitter();
+  productDetails: any;
+  getProductId: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private authService: AuthService,
@@ -35,6 +37,16 @@ export class ProductDialogComponent implements OnInit {
       } 
     });
 
+    if(this.data?.data) {
+      this.getProductId = this.data?.data.id ;
+      this.userService.getOneProduct({id: this.getProductId}).subscribe((res: any) => {
+        if(res) {
+          this.productDetails= res.response;
+          this.intializeForm();
+        }
+      })
+    }
+
     this.productForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       categoryId: new FormControl(null, Validators.required),
@@ -44,10 +56,20 @@ export class ProductDialogComponent implements OnInit {
     });
   }
 
+  intializeForm() {
+    this.productForm = new FormGroup({
+      name: new FormControl(this.productDetails.name ? this.productDetails.name : null, Validators.required),
+      categoryId: new FormControl(this.productDetails.categoryId ? this.productDetails.categoryId : null, Validators.required),
+      description: new FormControl(this.productDetails.description ? this.productDetails.description : null, Validators.required),
+      price: new FormControl(this.productDetails.price ? this.productDetails.price : null, [Validators.required, Validators.pattern('[0-9]{1,5}')]),
+      status: new FormControl(this.productDetails.status ? this.productDetails.status : null)
+    });
+  }
+
   OnSaveProduct() {
     this.ngxService.start();
     if(this.productForm.valid) {
-      if(this.data != 'Update') {
+      if(this.data?.action != 'Update') {
         this.userService.createProduct(this.productForm.value).subscribe((res: any) => {
           if(res){
             console.log('Create Product: ', res);
@@ -56,11 +78,22 @@ export class ProductDialogComponent implements OnInit {
             this.snackbarService.openSnackbar(this.message.ADD_PRODUCT, 'Success');
           } else{
             this.ngxService.stop();
-            this,this.snackbarService.openSnackbar(this.message.SAVE_ERROR, 'Error')
+            this.snackbarService.openSnackbar(this.message.SAVE_ERROR, 'Error')
           }
         })
       } else {
-        
+        this.productForm.value.id = +this.getProductId
+        this.userService.updateProduct(this.productForm.value).subscribe((res: any) => {
+          if(res) {
+            console.log('update product: ',res);
+            this.ngxService.stop();
+            this.onEditProduct.emit();
+            this.snackbarService.openSnackbar(this.message.UPDATE_PRODUCT, 'Success');            
+          } else {
+            this.ngxService.stop();
+            this.snackbarService.openSnackbar(this.message.UPDATE_ERROR, 'Error');
+          }
+        })
       }
     }
   }

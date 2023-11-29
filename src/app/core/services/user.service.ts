@@ -43,4 +43,16 @@ export class UserService {
   createProduct(data: any) {
     return this.httpService.postMethod('createProduct', data);
   }
+
+  updateProduct(data: any) {
+    return this.httpService.postMethod('updateProduct', data);
+  } 
+
+  getOneProduct(data: any) {
+    return this.httpService.postMethod('getOneProduct', data);
+  }
+
+  deleteProduct(data: any) {
+    return this.httpService.postMethod('deleteProduct', data);
+  }
 }

@@ -33,6 +33,22 @@ const getProduct = async function (req, res) {
 }
 module.exports.getProduct = getProduct;
 
+// To fetch one product
+const getOneProduct = async function (req, res) {
+  let err;
+  [err, response] = await to(Products.findOne({
+    where: {
+      id: req.body.id
+    },
+    include: [
+      { model: Category}
+    ]
+  }));
+  if (err) return ReE(res, err, 422);
+  return ReS(res, { response });
+}
+module.exports.getOneProduct = getOneProduct;
+
 // To update the product
 const updateProduct = async function (req, res) {
   let err;

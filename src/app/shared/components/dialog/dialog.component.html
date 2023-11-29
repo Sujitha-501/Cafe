@@ -1,13 +1,21 @@
-<h2 mat-dialog-title>{{data.header}}</h2>
-<div *ngIf="data?.header === 'Error'" mat-dialog-content fxLayout="row" fxLayoutAlign="start center">
-  <p>{{data?.content}}</p>
-</div>
-<div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="5px">
-  <ng-container *ngIf="data?.actionType === 'Confirmation'">
-    <button mat-stroked-button [mat-dialog-close]="false">No</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">Yes</button>
-  </ng-container>
-  <button mat-raised-button *ngIf="data?.actionType ==='Message'" matDialogClose color="primary">Okay</button>
-  <button mat-stroked-button *ngIf="data?.actionType !=='Confirmation' && data?.actionType !== 'Message'" matDialogClose
-    color="primary">Close</button>
+<div class="dialog-outer">
+  <h2 mat-dialog-title>{{data.header}}</h2>
+  <div *ngIf="data?.header !== 'Error' " mat-dialog-content>
+    <div [innerHtml]="data?.content"></div>
+  </div>
+  <div *ngIf="data?.header === 'Error'" mat-dialog-content fxLayout="row" fxLayoutAlign="start center">
+    <svg fxFlex="15%" class="error-icon">
+      <use xlink:href="assets/symbol-definintion.svg#errors"></use>
+    </svg>
+    <p>{{data?.content}}</p>
+  </div>
+  <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="5px">
+    <ng-container *ngIf="data?.actionType === 'Confirmation'">
+      <button mat-stroked-button [mat-dialog-close]="false">No</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="true">Yes</button>
+    </ng-container>
+    <button mat-raised-button *ngIf="data?.actionType ==='Message'" matDialogClose color="primary">Okay</button>
+    <button mat-stroked-button *ngIf="data?.actionType !=='Confirmation' && data?.actionType !== 'Message'"
+      matDialogClose color="primary">Close</button>
+  </div>
 </div>

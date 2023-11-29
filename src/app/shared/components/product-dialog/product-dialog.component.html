@@ -46,7 +46,7 @@
     <div fxLayout="row" fxLayoutAlign="center center">
       <button mat-stroked-button color="primary" [mat-dialog-close]="false">Cancel</button>
       <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="OnSaveProduct()"
-      [disabled]="!(productForm.valid && productForm.dirty)">{{data != 'Update' ?  'Save' : 'Update'}}</button>
+      [disabled]="!(productForm.valid && productForm.dirty)">{{data.action != 'Update' ?  'Save' : 'Update'}}</button>
     </div>
   </div>
 </div>
