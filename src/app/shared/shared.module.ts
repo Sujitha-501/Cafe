@@ -4,6 +4,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { MaterialModule } from '../material/material.module';
 import { CategoryDialogComponent } from './components/category-dialog/category-dialog.component';
+import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
 
 
 
@@ -11,7 +12,8 @@ import { CategoryDialogComponent } from './components/category-dialog/category-d
   declarations: [
     DialogComponent,
     SnackbarComponent,
-    CategoryDialogComponent
+    CategoryDialogComponent,
+    ProductDialogComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,52 @@
+<mat-toolbar color="primary" fxLayoutAlign="space-between center">
+  <h2 style="color: white;">{{data?.action}} Products</h2>
+  <mat-icon style="color:#ffffff" [mat-dialog-close]="false">close</mat-icon>
+</mat-toolbar>
+<div class="container" fxLayout="column" fxLayoutAlign="center center" style="text-align: center;">
+  <div mat-dialog-content>
+    <form [formGroup]="productForm">
+      <div fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="productForm?.get('name')?.hasError('required')">
+            {{message?.FILED_REQUIRD}}
+          </mat-error>
+        </mat-form-field>
+        <div fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="space-between center">
+          <mat-form-field appearance="outline" fxFlex="45%">
+            <mat-label>Price</mat-label>
+            <input matInput  formControlName="price">
+            <mat-error *ngIf="productForm?.get('price')?.hasError('required')">
+              {{message?.FILED_REQUIRD}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="45%">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="categoryId">
+              <mat-option *ngFor="let item of categoryList" [value]="item?.id">{{item?.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="productForm?.get('categoryId')?.hasError('required')">
+              {{message?.FILED_REQUIRD}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description">
+          <mat-error *ngIf="productForm?.get('description')?.hasError('required')">
+            {{message?.FILED_REQUIRD}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <button mat-stroked-button color="primary" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="OnSaveProduct()"
+      [disabled]="!(productForm.valid && productForm.dirty)">{{data != 'Update' ?  'Save' : 'Update'}}</button>
+    </div>
+  </div>
+</div>

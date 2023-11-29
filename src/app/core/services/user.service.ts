@@ -39,4 +39,8 @@ export class UserService {
   getProduct() {
     return this.httpService.getMethod('getProduct');
   }
+
+  createProduct(data: any) {
+    return this.httpService.postMethod('createProduct', data);
+  }
 }

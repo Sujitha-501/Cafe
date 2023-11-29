@@ -7,7 +7,8 @@
   <form [formGroup]="categoryForm">
     <div fxLayout="column">
       <mat-form-field appearance="outline">
-        <input matInput placeholder="name" formControlName="name">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
         <mat-error *ngIf="categoryForm?.get('name')?.hasError('required')">
           {{message?.FILED_REQUIRD}}
         </mat-error>

@@ -17,6 +17,9 @@
   "UPDATE_CATEGORY": "Category Updated Successfully",
   "ADD_CATEGORY": "Category added Successfully",
   "CATEGORY_LENGTH": "Category Name must be less than 30 Characters",
+  "ADD_PRODUCT": "Product added Successfully",
+  "UPDATE_PRODUCT": "Category Updated Successfully",
+  "PRODUCT_LENGTH": "Product Name must be less than 30 Characters",
   "SAVE_ERROR": "Failed to Save Data",
   "UPDATE_ERROR": "Failed to Update Data"
 }
