@@ -9,6 +9,7 @@ import { LoginGuard } from './auth/services/login.guard';
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
 import { ManageCategoryComponent } from './core/components/manage-category/manage-category.component';
 import { ManageProductComponent } from './core/components/manage-product/manage-product.component';
+import { ManageOrdersComponent } from './core/components/manage-orders/manage-orders.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
     path: 'cafe', component: NavbarComponent, canActivate: [AuthGuard], children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'category', component: ManageCategoryComponent },
-      { path: 'product', component: ManageProductComponent }
+      { path: 'product', component: ManageProductComponent },
+      { path: 'orders', component: ManageOrdersComponent}
     ]
   }
 

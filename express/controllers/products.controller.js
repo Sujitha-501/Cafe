@@ -49,6 +49,19 @@ const getOneProduct = async function (req, res) {
 }
 module.exports.getOneProduct = getOneProduct;
 
+// To fetch one product
+const getProductById = async function (req, res) {
+  let err;
+  [err, response] = await to(Products.findAll({
+    where: {
+      categoryId: req.body.id
+    }
+  }));
+  if (err) return ReE(res, err, 422);
+  return ReS(res, { response });
+}
+module.exports.getProductById = getProductById;
+
 // To update the product
 const updateProduct = async function (req, res) {
   let err;

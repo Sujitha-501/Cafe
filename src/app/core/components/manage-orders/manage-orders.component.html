@@ -1,0 +1,110 @@
+<div class="outer-container">
+  <mat-card fxLayout="row">
+    <mat-card-content style="width: 100%;">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span style="font-size: 25px;font-weight: 500;"> Manage Orders</span>
+        <button style="width: fit-content;" mat-flat-button color="primary" >Place Order</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <br />
+
+  <mat-card>
+    <h2 style="font-size: 25px;font-weight: 500;margin: 16px;"> Customer Details</h2>
+    <mat-card-content style="width: 100%;">
+    <form [formGroup]="ordersForm">
+      <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="center center">
+         <!-- Name -->
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="ordersForm?.get('name')?.hasError('required')">
+            {{message?.FILED_REQUIRD}}
+          </mat-error>
+        </mat-form-field>
+         <!-- Email -->
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="ordersForm?.get('email')?.hasError('required')">
+            {{message?.FILED_REQUIRD}}
+          </mat-error>
+        </mat-form-field>
+         <!-- Contact Number -->
+        <mat-form-field appearance="fill">
+          <mat-label>Contact Number</mat-label>
+          <input matInput formControlName="contactNumber">
+          <mat-error *ngIf="ordersForm?.get('contactNumber')?.hasError('required')">
+            {{message?.FILED_REQUIRD}}
+          </mat-error>
+        </mat-form-field>
+         <!-- Payment Mode -->
+        <mat-form-field appearance="fill">
+          <mat-label>Payment Mode</mat-label>
+          <mat-select formControlName="paymentMode">
+            <mat-option *ngFor="let item of payment" [value]="item.id">{{item.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="ordersForm?.get('paymentMode')?.hasError('required')">
+            {{message?.FILED_REQUIRD}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    </mat-card-content>
+  </mat-card>
+  <br />
+
+  <mat-card>
+    <h2 style="font-size: 25px;font-weight: 500;margin: 16px;"> Customer Details</h2>
+    <mat-card-content style="width: 100%;">
+    <form [formGroup]="ordersForm">
+      <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="center center">
+        <!-- Category -->
+        <mat-form-field appearance="fill">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category" (selectionChange)="onSelect()">
+            <mat-option *ngFor="let item of categoryList" [value]="item.id">{{item.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="ordersForm?.get('category')?.hasError('required')">
+            {{message?.FILED_REQUIRD}}
+          </mat-error>
+        </mat-form-field>
+        <!-- Products -->
+        <mat-form-field appearance="fill">
+          <mat-label>Products</mat-label>
+          <mat-select formControlName="product" (selectionChange)="onSelectProduct()">
+            <mat-option *ngFor="let item of productList" [value]="item.id">{{item.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="ordersForm?.get('product')?.hasError('required')">
+            {{message?.FILED_REQUIRD}}
+          </mat-error>
+        </mat-form-field>
+        <!-- Quantity -->
+       <mat-form-field appearance="outline">
+         <mat-label>Quantity</mat-label>
+         <input matInput (keydown)="allowPositiveNumbers($event)" [(ngModel)]="quantityValue" (change)="onQuantity()" formControlName="quantity" >
+         <mat-error *ngIf="ordersForm?.get('quantity')?.hasError('required')">
+           {{message?.FILED_REQUIRD}}
+         </mat-error>
+       </mat-form-field>
+       <!-- Price -->
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" (keydown)="notType($event)">
+        <mat-error *ngIf="ordersForm?.get('price')?.hasError('required')">
+          {{message?.FILED_REQUIRD}}
+        </mat-error>
+      </mat-form-field>
+      <!-- Total -->
+     <mat-form-field appearance="outline">
+       <mat-label>Total</mat-label>
+       <input matInput formControlName="total"  (keydown)="notType($event)">
+       <mat-error *ngIf="ordersForm?.get('total')?.hasError('required')">
+         {{message?.FILED_REQUIRD}}
+       </mat-error>
+     </mat-form-field>
+      </div>
+    </form>
+    </mat-card-content>
+  </mat-card>
+</div>

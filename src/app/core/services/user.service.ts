@@ -55,4 +55,8 @@ export class UserService {
   deleteProduct(data: any) {
     return this.httpService.postMethod('deleteProduct', data);
   }
+
+  getProductById(data: any) {
+    return this.httpService.postMethod('getProductById', data);
+  }
 }

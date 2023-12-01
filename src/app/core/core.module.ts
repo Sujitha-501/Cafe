@@ -12,6 +12,7 @@ import { AuthModule } from '../auth/auth.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
+import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
 
 
 
@@ -25,7 +26,8 @@ import { ManageProductComponent } from './components/manage-product/manage-produ
     FooterComponent,
     NavbarComponent,
     ManageCategoryComponent,
-    ManageProductComponent
+    ManageProductComponent,
+    ManageOrdersComponent
   ],
   imports: [
     CommonModule,
