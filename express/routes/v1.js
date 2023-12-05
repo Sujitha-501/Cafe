@@ -9,6 +9,7 @@ const EmployeeController = require('../controllers/employee.controller');
 const UserAccountController = require('../controllers/userAccount.controller');
 const CategoryController = require('../controllers/category.controller');
 const ProductsController = require('../controllers/products.controller');
+const OrderController = require('../controllers/order.controller');
 router.post('/refreshToken', UserAccountController.refreshToken);
 // Customer
 router.post('/login', UserAccountController.login);
@@ -31,5 +32,6 @@ router.post('/getOneProduct', passport.authenticate('jwt', { session: false }), 
 router.get('/getProduct', passport.authenticate('jwt', { session: false }), ProductsController.getProduct);
 router.post('/deleteProduct', passport.authenticate('jwt', { session: false }), ProductsController.deleteProduct);
 router.post('/updateProduct', passport.authenticate('jwt', { session: false }), ProductsController.updateProduct);
-
+// Order
+router.post('/createOrder', OrderController.createOrder);
 module.exports = router;

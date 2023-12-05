@@ -59,4 +59,8 @@ export class UserService {
   getProductById(data: any) {
     return this.httpService.postMethod('getProductById', data);
   }
+
+  createOrder(data: any) {
+    return this.httpService.postMethod('createOrder', data);
+  }
 }

@@ -54,8 +54,12 @@ const getProductById = async function (req, res) {
   let err;
   [err, response] = await to(Products.findAll({
     where: {
-      categoryId: req.body.id
-    }
+      categoryId: req.body.id,
+      status: req.body.status
+    },
+    include: [
+      { model: Category}
+    ]
   }));
   if (err) return ReE(res, err, 422);
   return ReS(res, { response });

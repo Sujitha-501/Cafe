@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserService } from '../../services/user.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { DialogService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-manage-orders',
@@ -19,21 +21,25 @@ export class ManageOrdersComponent implements OnInit {
   selectedGroup: any;
   getPrice: any;
   quantityValue: any;
+  categoryName: any;
   payment = [
     { id: 1, name: 'Cash' },
     { id: 2, name: 'Credit Card' },
     { id: 3, name: 'Debit Card' }
-  ]
+  ];
+  dataSource!: MatTableDataSource<any>;
+  displayedColumns = ['product', 'category', 'quantity', 'price', 'total', 'action'];
+  TableData: any[] = [];
 
   constructor(private authService: AuthService,
     private userService: UserService,
     private snackbarService: SnackbarService,
-    private ngxService: NgxUiLoaderService) { }
+    private ngxService: NgxUiLoaderService,
+    private dialog: DialogService) { }
 
   ngOnInit(): void {
     this.ngxService.start();
     this.authService.messages.subscribe(res => this.message = res);
-
     this.userService.getCategory().subscribe((res: any) => {
       if (res) {
         this.ngxService.stop();
@@ -55,15 +61,19 @@ export class ManageOrdersComponent implements OnInit {
       price: new FormControl(null, Validators.required),
       total: new FormControl(0, Validators.required)
     });
-  }
+  };
 
   onSelect() {
     const selectedCategoryId = this.ordersForm.get('category')?.value;
-    console.log('selectedCategoryId:', selectedCategoryId);
     if (selectedCategoryId) {
-      this.userService.getProductById({ id: selectedCategoryId }).subscribe((res: any) => {
+      this.userService.getProductById({ id: selectedCategoryId, status: 'true' }).subscribe((res: any) => {
         if (res) {
           this.productList = res.response;
+          // Reset product, price, quantity, and total
+          this.ordersForm.controls['product'].setValue(null);
+          this.ordersForm.controls['price'].setValue(null);
+          this.ordersForm.controls['quantity'].setValue(null);
+          this.ordersForm.controls['total'].setValue(null);
         }
       },
         (error) => {
@@ -71,34 +81,39 @@ export class ManageOrdersComponent implements OnInit {
         }
       );
     }
-  }
+  };
 
+  
   onSelectProduct() {
     const selectedProductId = this.ordersForm.get('product')?.value;
-    console.log('selectedProductId', selectedProductId);
     if (selectedProductId) {
-      this.userService.getOneProduct({ id: selectedProductId }).subscribe((res: any) => {
+      this.userService.getOneProduct({ name: selectedProductId }).subscribe((res: any) => {
         if (res) {
           this.getPrice = res.response.price;
-          console.log('getPrice:', this.getPrice);
+          this.categoryName = res.response.category.name;
           this.ordersForm.controls['price'].setValue(this.getPrice);
-          this.ordersForm.controls['quality'].setValue(1);
-          this.ordersForm.controls['total'].setValue(this.getPrice * 1);
+          this.ordersForm.controls['quantity'].setValue(1);
+          this.calculateTotal();
         }
       })
     }
-  }
+  };
 
   onQuantity() {
-    console.log('quantitys', this.quantityValue);
-    this.ordersForm.controls['total'].setValue(this.getPrice * this.quantityValue);
-  }
+    this.calculateTotal();
+  };
+
+  calculateTotal() {
+    const price = this.ordersForm.controls['price'].value;
+    const quantity = this.ordersForm.controls['quantity'].value;
+    this.ordersForm.controls['total'].setValue(price * quantity);
+  };
 
   notType(event: any) {
-    if(event) {
+    if (event) {
       return false;
     };
-  }
+  };
 
   allowPositiveNumbers(event: any) {
     const allowedKeys = ['Backspace', 'Delete'];
@@ -112,7 +127,52 @@ export class ManageOrdersComponent implements OnInit {
     }
     event.preventDefault();
     return false;
-  }
-  
-  
+  };
+
+  onAddProduct() {
+    if (this.ordersForm.valid) {
+      // this.TableData.push(this.ordersForm.value);
+      const tableRow = { ...this.ordersForm.value, categoryName: this.categoryName };
+      this.TableData.push(tableRow);
+      console.log('save: ', this.TableData);
+      this.dataSource = new MatTableDataSource(this.TableData);
+      // this.ordersForm.reset();      
+      // Reset product, price, quantity, and total
+      this.ordersForm.controls['category'].setValue(null);
+      this.ordersForm.controls['product'].setValue(null);
+      this.ordersForm.controls['price'].setValue(null);
+      this.ordersForm.controls['quantity'].setValue(null);
+      this.ordersForm.controls['total'].setValue(null);
+    }
+  };
+
+  onDelete(element: any) {
+    const dialogRef = this.dialog.openConfirmationDialog(this.message.DELETE, 'custome-dialog');
+    dialogRef.afterClosed().subscribe((res: any) => {
+      if (res) {
+        const index = this.TableData.indexOf(element);
+        if (index !== -1) {
+          this.TableData.splice(index, 1);
+          this.dataSource = new MatTableDataSource(this.TableData);
+        }
+      }
+    });
+  };
+
+  onPlaceOrder() {
+    console.log('crate:', this.TableData);
+    this.userService.createOrder(this.TableData).subscribe((res: any) => {
+      this.ngxService.start();
+      console.log('order Table:', res);
+      if(res) {
+        this.ordersForm.reset(); 
+        this.snackbarService.openSnackbar('Order Palced Successfully', 'Success');
+        this.ngxService.stop();
+      }      
+    }, (error) => {
+      this.ngxService.stop();
+      console.log('error', error);      
+    });
+  };
+
 }
