@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = (sequelize, DataTypes) => {
-  var Model = sequelize.define('order', {
+  var Model = sequelize.define('bills', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -16,30 +16,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     contactNumber: {
-      type: DataTypes.STRING,
+      type: DataTypes.BIGINT,
       allowNull: false
     },
     paymentMode: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    product: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    categoryName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    total: {
+    totalAmount: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -54,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     }
   },{
-    tableName: 'order'
+    tableName: 'bills'
   });
   return Model;
 }

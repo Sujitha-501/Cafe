@@ -42,7 +42,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Payment Mode</mat-label>
           <mat-select formControlName="paymentMode">
-            <mat-option *ngFor="let item of payment" [value]="item.id">{{item.name}}</mat-option>
+            <mat-option *ngFor="let item of payment" [value]="item.name">{{item.name}}</mat-option>
           </mat-select>
           <mat-error *ngIf="ordersForm?.get('paymentMode')?.hasError('required')">
             {{message?.FILED_REQUIRD}}

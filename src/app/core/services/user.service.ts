@@ -48,6 +48,10 @@ export class UserService {
     return this.httpService.postMethod('updateProduct', data);
   } 
 
+  getProductByName(data: any) {
+    return this.httpService.postMethod('getProductByName', data);
+  }
+
   getOneProduct(data: any) {
     return this.httpService.postMethod('getOneProduct', data);
   }
@@ -62,5 +66,17 @@ export class UserService {
 
   createOrder(data: any) {
     return this.httpService.postMethod('createOrder', data);
+  }
+
+  createBills(data: any) {
+    return this.httpService.postMethod('createBills', data);
+  }
+
+  getAllBills() {
+    return this.httpService.getMethod('getAllBills');
+  }
+
+  getAllOrders(data: any) {
+    return this.httpService.postMethod('getAllOrders', data);
   }
 }

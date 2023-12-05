@@ -29,9 +29,14 @@ router.post('/createProduct', passport.authenticate('jwt', { session: false }), 
 router.get('/getProductCount', passport.authenticate('jwt', { session: false }), ProductsController.getProductCount);
 router.post('/getProductById', passport.authenticate('jwt', { session: false }), ProductsController.getProductById);
 router.post('/getOneProduct', passport.authenticate('jwt', { session: false }), ProductsController.getOneProduct);
+router.post('/getProductByName', passport.authenticate('jwt', { session: false }), ProductsController.getProductByName);
 router.get('/getProduct', passport.authenticate('jwt', { session: false }), ProductsController.getProduct);
 router.post('/deleteProduct', passport.authenticate('jwt', { session: false }), ProductsController.deleteProduct);
 router.post('/updateProduct', passport.authenticate('jwt', { session: false }), ProductsController.updateProduct);
 // Order
-router.post('/createOrder', OrderController.createOrder);
+router.post('/createOrder', passport.authenticate('jwt', { session: false }), OrderController.createOrder);
+router.post('/getAllOrders', passport.authenticate('jwt', { session: false }), OrderController.getAllOrders);
+// Bills
+router.post('/createBills', passport.authenticate('jwt', { session: false }), OrderController.createBills);
+router.get('/getAllBills', passport.authenticate('jwt', { session: false }), OrderController.getAllBills);
 module.exports = router;

@@ -83,11 +83,11 @@ export class ManageOrdersComponent implements OnInit {
     }
   };
 
-  
+
   onSelectProduct() {
     const selectedProductId = this.ordersForm.get('product')?.value;
     if (selectedProductId) {
-      this.userService.getOneProduct({ name: selectedProductId }).subscribe((res: any) => {
+      this.userService.getProductByName({ name: selectedProductId }).subscribe((res: any) => {
         if (res) {
           this.getPrice = res.response.price;
           this.categoryName = res.response.category.name;
@@ -159,20 +159,39 @@ export class ManageOrdersComponent implements OnInit {
     });
   };
 
+  billData: any;
+
   onPlaceOrder() {
-    console.log('crate:', this.TableData);
     this.userService.createOrder(this.TableData).subscribe((res: any) => {
       this.ngxService.start();
       console.log('order Table:', res);
       if(res) {
         this.ordersForm.reset(); 
-        this.snackbarService.openSnackbar('Order Palced Successfully', 'Success');
         this.ngxService.stop();
       }      
     }, (error) => {
       this.ngxService.stop();
       console.log('error', error);      
     });
+
+    
+    this.billData = this.ordersForm.value;
+    const totalSum = this.TableData.reduce((sum, item) => sum + item.total, 0);
+    var data = {
+      name: this.billData.name,
+      email: this.billData.email,
+      contactNumber: this.billData.contactNumber,
+      paymentMode: this.billData.paymentMode,
+      totalAmount: totalSum
+    }
+    console.log('data: ', data);
+    this.userService.createBills(data).subscribe((res: any) => {
+      console.log('Bills:', res);
+      if(res) {   
+        this.snackbarService.openSnackbar('Order Palced Successfully', 'Success');     
+        this.ngxService.stop();
+      }
+    })
   };
 
 }
