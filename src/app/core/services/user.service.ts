@@ -79,4 +79,8 @@ export class UserService {
   getAllOrders(data: any) {
     return this.httpService.postMethod('getAllOrders', data);
   }
+
+  getOrderCount() {
+    return this.httpService.getMethod('getOrderCount');
+  }
 }

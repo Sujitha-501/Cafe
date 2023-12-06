@@ -11,6 +11,7 @@ export class DashboardComponent {
 
   categoryCount!: boolean;
   productCount!: boolean;
+  orderCount!: boolean;
 
   constructor(private userService: UserService,
     private ngxService: NgxUiLoaderService,) {}
@@ -24,7 +25,11 @@ export class DashboardComponent {
       this.productCount = res.productCount
       this.ngxService.stop();
     });
-
+    
+    this.userService.getOrderCount().subscribe((res: any) => {
+      this.orderCount = res.response
+      this.ngxService.stop();
+    });
   }
 
 }

@@ -36,6 +36,7 @@ router.post('/updateProduct', passport.authenticate('jwt', { session: false }), 
 // Order
 router.post('/createOrder', passport.authenticate('jwt', { session: false }), OrderController.createOrder);
 router.post('/getAllOrders', passport.authenticate('jwt', { session: false }), OrderController.getAllOrders);
+router.get('/getOrderCount', passport.authenticate('jwt', { session: false }), OrderController.getOrderCount);
 // Bills
 router.post('/createBills', passport.authenticate('jwt', { session: false }), OrderController.createBills);
 router.get('/getAllBills', passport.authenticate('jwt', { session: false }), OrderController.getAllBills);

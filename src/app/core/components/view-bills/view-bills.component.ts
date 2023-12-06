@@ -15,6 +15,7 @@ export class ViewBillsComponent implements OnInit {
   displayedColumns = ['name', 'email', 'paymentMode', 'totalAmount', 'actions'];
   dataSource!: MatTableDataSource<any>;
   billData: any;
+  productData: any;
 
   constructor(private userService: UserService,
     private ngxService: NgxUiLoaderService,
@@ -37,11 +38,14 @@ export class ViewBillsComponent implements OnInit {
   }
 
   onView(element: any) {
-    console.log('ele: ',element);
-    this.userService.getAllOrders({email: element.email, modified: element.modified}).subscribe((res) => {
-      console.log('Order: ',res);      
-    });
+    this.ngxService.start();
+    console.log('ele: ', element);
     const dialogRef = new MatDialogConfig();
+    dialogRef.width = '650px'
+    dialogRef.data = {
+      email: element.email,
+      modified: element.modified
+    }
     this.dialog.open(BillDetailsComponent, dialogRef);
   }
 

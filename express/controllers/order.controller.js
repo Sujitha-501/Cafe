@@ -25,6 +25,17 @@ const getAllOrders = async function (req, res) {
 }
 module.exports.getAllOrders = getAllOrders;
 
+
+// Get the count of Orders
+const getOrderCount = async function (req, res) {
+  let err;
+  [err, response] = await to(Bills.count());
+  if (err) return ReE(res, err, 422);
+  const count = response.length;
+  return ReS(res, { response });
+}
+module.exports.getOrderCount = getOrderCount;
+
 // To create Bills
 const createBills = async function (req, res) {
   let err;
