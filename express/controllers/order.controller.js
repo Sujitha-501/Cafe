@@ -25,7 +25,6 @@ const getAllOrders = async function (req, res) {
 }
 module.exports.getAllOrders = getAllOrders;
 
-
 // Get the count of Orders
 const getOrderCount = async function (req, res) {
   let err;

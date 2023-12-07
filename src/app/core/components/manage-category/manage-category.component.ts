@@ -29,9 +29,13 @@ export class ManageCategoryComponent implements OnInit{
 
   createTable(){
     this.userService.getCategory().subscribe((res: any) => {
-      this.ngxService.stop();
-      this.dataSource = new MatTableDataSource(res.response);
-      this.dataSource.paginator = this.paginator;
+      if(res) {
+        this.ngxService.stop();
+        this.dataSource = new MatTableDataSource(res.response);
+        this.dataSource.paginator = this.paginator;
+      } else {
+        this.ngxService.stop();
+      }     
     })
   }
 

@@ -51,7 +51,7 @@ export class TokenInterceptor {
         return next.handle(this.setHeaders(request));
       }), catchError((err: any) => {
         this.isRefreshingToken = false;
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/app']);
         return throwError(err);
       }));
     } else {

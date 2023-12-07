@@ -14,9 +14,8 @@ router.post('/refreshToken', UserAccountController.refreshToken);
 // Customer
 router.post('/login', UserAccountController.login);
 router.post('/signup', EmployeeController.signup);
-// Based on roles
-router.post('/getCustomerDetails', passport.authenticate('jwt', { session: false }), EmployeeController.getCustomerDetails);
-router.post('/updateCustomer', passport.authenticate('jwt', { session: false }), EmployeeController.updateCustomer);
+// User 
+router.post('/updateUser', passport.authenticate('jwt', { session: false }), EmployeeController.updateUser);
 router.get('/getDetails', passport.authenticate('jwt', { session: false }), EmployeeController.getDetails);
 // Category 
 router.post('/createCategory', passport.authenticate('jwt', { session: false }), CategoryController.createCategory);

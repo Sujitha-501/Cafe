@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="example-toolbar">
   <button mat-icon-button (click)="sidenav.toggle()"><mat-icon style="color: rgb(255, 255, 255);">menu</mat-icon></button>
-  <h1 class="example-app-name">MyApp</h1>
+  <h1 class="example-app-name">Bakery</h1>
   <span class="example-spacer"></span>
   <button [matMenuTriggerFor]="beforeMenu" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>account_circle</mat-icon>
@@ -16,10 +16,11 @@
   <mat-sidenav #sidenav class="sidenav-width" mode="side" [opened]="true">
     <mat-nav-list>
       <mat-list-item routerLink="dashboard"> <mat-icon mat-list-icon>home</mat-icon><span>Dashboard</span> </mat-list-item>
-      <mat-list-item routerLink="category"> <mat-icon mat-list-icon>category</mat-icon> <span>Category</span></mat-list-item>
-      <mat-list-item routerLink="product"> <mat-icon mat-list-icon>inventory_2</mat-icon><span>Products</span> </mat-list-item>
+      <mat-list-item *ngIf="isAdmin()" routerLink="category"> <mat-icon mat-list-icon>category</mat-icon> <span>Category</span></mat-list-item>
+      <mat-list-item *ngIf="isAdmin()" routerLink="product"> <mat-icon mat-list-icon>inventory_2</mat-icon><span>Products</span> </mat-list-item>
       <mat-list-item routerLink="orders"> <mat-icon mat-list-icon>list_alt</mat-icon><span>Orders</span> </mat-list-item>
       <mat-list-item routerLink="bills"> <mat-icon mat-list-icon>import_contacts</mat-icon><span>View Bills</span> </mat-list-item>
+      <mat-list-item *ngIf="isAdmin()" routerLink="user"> <mat-icon mat-list-icon>people</mat-icon><span>Manage User</span> </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

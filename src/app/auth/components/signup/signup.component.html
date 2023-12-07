@@ -42,6 +42,9 @@
             <mat-error *ngIf="signupForm?.get('password')?.hasError('required')">
               {{message?.FILED_REQUIRD}}
             </mat-error>
+            <mat-error *ngIf="signupForm?.get('password')?.hasError('pattern')">
+              {{message?.PASSWORD_LENGTH}}
+            </mat-error>
           </mat-form-field>
         </div>
       </form>

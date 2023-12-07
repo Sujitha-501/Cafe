@@ -4,6 +4,7 @@
   "INVALID_NAME": "Please enter a valid name",
   "INVALID_EMAIL": "Please enter a valid email",
   "INVALID_PASSWORD": "Invalid password",
+  "PASSWORD_LENGTH": "Password length must be greater than 5",
   "INVALID_DATE": "Invalid Date",
   "EMAIL_EXISTS": "Email already exists!",
   "DATA_SAVED": "Data Saved Successfully",
@@ -12,6 +13,7 @@
   "CANCEL": "Are you sure you want to cancel?",
   "REGISTER": "Registered Successfully",
   "LOGIN": "Login Successfully",
+  "ERROR": "Please Provide Valid Credentials",
   "NAME": "Please Enter a valid Name",
   "NUMBER": "Please Enter a valid Contact Number",
   "UPDATE_CATEGORY": "Category Updated Successfully",
@@ -23,5 +25,7 @@
   "SAVE_ERROR": "Failed to Save Data",
   "UPDATE_ERROR": "Failed to Update Data",
   "DELETE_PRODUCT": "Product Deleted Successfully",
-  "PRODUCT_STATUS": "Product Status Updated Successfully"
+  "PRODUCT_STATUS": "Product Status Updated Successfully",
+  "USER_STATUS": "Status Updated Successfully",
+  "INACTIVE_USER": "Please wait for Admin to activate your Account!"
 }

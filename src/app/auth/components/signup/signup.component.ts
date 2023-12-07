@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/core/services/user.service';
@@ -19,8 +18,7 @@ export class SignupComponent implements OnInit {
   errorMessage!: string;
   error!: boolean;
   message: any;
-  constructor(private router: Router,
-              private snackbarService: SnackbarService,
+  constructor(private snackbarService: SnackbarService,
               private userService: UserService,
               private ngxService: NgxUiLoaderService,
               private authService: AuthService) {}
@@ -28,12 +26,12 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.authService.messages.subscribe(res => this.message = res);
       this.signupForm = new FormGroup({
-        name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]{2,20}')]),
+        name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]{4,20}')]),
         email: new FormControl(null, [Validators.required,Validators.required, Validators.pattern('[a-zA-Z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]),
         contactNumber: new FormControl(null, [Validators.required, Validators.pattern('^[e0-9]{10,10}$')]),
-        password: new FormControl(null, Validators.required),
+        password: new FormControl(null,[ Validators.required, Validators.pattern('^[a-zA-Z0-9@#$%^&*]{5,}$')]),
         role: new FormControl('user'),
-        status: new FormControl('active')
+        status: new FormControl('false')
       });
   }
 

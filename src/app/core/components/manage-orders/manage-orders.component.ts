@@ -6,7 +6,6 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogService } from 'src/app/shared/services/dialog.service';
-
 @Component({
   selector: 'app-manage-orders',
   templateUrl: './manage-orders.component.html',
@@ -30,6 +29,7 @@ export class ManageOrdersComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   displayedColumns = ['product', 'category', 'quantity', 'price', 'total', 'action'];
   TableData: any[] = [];
+  userDatas: any;
 
   constructor(private authService: AuthService,
     private userService: UserService,
@@ -39,7 +39,12 @@ export class ManageOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngxService.start();
-    this.authService.messages.subscribe(res => this.message = res);
+    this.authService.messages.subscribe(res => this.message = res);  
+    this.userDatas = this.authService.getData();
+    if(this.userDatas) {
+      console.log('User name: ', this.userDatas);
+      this.setUserDetails();
+    }
     this.userService.getCategory().subscribe((res: any) => {
       if (res) {
         this.ngxService.stop();
@@ -49,11 +54,24 @@ export class ManageOrdersComponent implements OnInit {
       }
     });
 
+    // this.ordersForm = new FormGroup({
+    //   name: new FormControl(null, [Validators.required]),
+    //   email: new FormControl(null, [Validators.required]),
+    //   contactNumber: new FormControl(null, [Validators.required]),
+    //   paymentMode: new FormControl(null, [Validators.required]),
+    //   category: new FormControl(null, Validators.required),
+    //   product: new FormControl(null, Validators.required),
+    //   quantity: new FormControl(null, Validators.required),
+    //   price: new FormControl(null, Validators.required),
+    //   total: new FormControl(0, Validators.required)
+    // });
+  };
 
+  setUserDetails() { 
     this.ordersForm = new FormGroup({
-      name: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required]),
-      contactNumber: new FormControl(null, [Validators.required]),
+      name: new FormControl(this.userDatas && this.userDatas.name ? this.userDatas.name : null, [Validators.required, Validators.pattern('[a-zA-Z]{4,20}')]),
+      email: new FormControl(this.userDatas && this.userDatas.email ? this.userDatas.email : null, [Validators.required, Validators.pattern('[a-zA-Z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]),
+      contactNumber: new FormControl(this.userDatas && this.userDatas.contactNumber ? this.userDatas.contactNumber : null,  [Validators.required, Validators.pattern('^[e0-9]{10,10}$')]),
       paymentMode: new FormControl(null, [Validators.required]),
       category: new FormControl(null, Validators.required),
       product: new FormControl(null, Validators.required),
@@ -61,7 +79,7 @@ export class ManageOrdersComponent implements OnInit {
       price: new FormControl(null, Validators.required),
       total: new FormControl(0, Validators.required)
     });
-  };
+  }
 
   onSelect() {
     const selectedCategoryId = this.ordersForm.get('category')?.value;
@@ -82,7 +100,6 @@ export class ManageOrdersComponent implements OnInit {
       );
     }
   };
-
 
   onSelectProduct() {
     const selectedProductId = this.ordersForm.get('product')?.value;

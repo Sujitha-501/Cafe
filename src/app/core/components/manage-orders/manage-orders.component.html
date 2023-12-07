@@ -1,4 +1,4 @@
-<div class="outer-container">
+<div class="outer-container" *ngIf="userDatas">
   <mat-card fxLayout="row">
     <mat-card-content style="width: 100%;">
       <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -21,6 +21,9 @@
           <mat-error *ngIf="ordersForm?.get('name')?.hasError('required')">
             {{message?.FILED_REQUIRD}}
           </mat-error>
+          <mat-error *ngIf="ordersForm?.get('name')?.hasError('pattern')">
+            {{message?.NAME}}
+          </mat-error>
         </mat-form-field>
          <!-- Email -->
         <mat-form-field appearance="fill">
@@ -29,6 +32,12 @@
           <mat-error *ngIf="ordersForm?.get('email')?.hasError('required')">
             {{message?.FILED_REQUIRD}}
           </mat-error>
+          <mat-error *ngIf="ordersForm?.get('email')?.hasError('email')">
+            {{message?.INVALID_EMAIL}}
+          </mat-error>
+          <mat-error *ngIf="ordersForm?.get('email')?.hasError('pattern')">
+            {{message?.INVALID_EMAIL}}
+          </mat-error>
         </mat-form-field>
          <!-- Contact Number -->
         <mat-form-field appearance="fill">
@@ -36,6 +45,9 @@
           <input matInput formControlName="contactNumber">
           <mat-error *ngIf="ordersForm?.get('contactNumber')?.hasError('required')">
             {{message?.FILED_REQUIRD}}
+          </mat-error>
+          <mat-error *ngIf="ordersForm?.get('contactNumber')?.hasError('pattern')">
+            {{message?.NUMBER}}
           </mat-error>
         </mat-form-field>
          <!-- Payment Mode -->

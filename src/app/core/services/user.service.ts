@@ -83,4 +83,16 @@ export class UserService {
   getOrderCount() {
     return this.httpService.getMethod('getOrderCount');
   }
+
+  getDetails() {
+    return this.httpService.getMethod('getDetails');
+  }
+
+  updateUser(data: any) {
+    return this.httpService.postMethod('updateUser', data);
+  }
+
+  getCurrentUser(data: any) {
+    
+  }
 }

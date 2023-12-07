@@ -14,6 +14,7 @@ import { ManageCategoryComponent } from './components/manage-category/manage-cat
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
 import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
 import { ViewBillsComponent } from './components/view-bills/view-bills.component';
+import { ManageUserComponent } from './components/manage-user/manage-user.component';
 
 
 
@@ -29,7 +30,8 @@ import { ViewBillsComponent } from './components/view-bills/view-bills.component
     ManageCategoryComponent,
     ManageProductComponent,
     ManageOrdersComponent,
-    ViewBillsComponent
+    ViewBillsComponent,
+    ManageUserComponent
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,8 @@ export class AuthService {
 
   messages = new BehaviorSubject<any>(null);
   user = new Subject<string>();
+  private userRole!: string;
+  userDatas :any[] =[];
   constructor(private http: HttpRoutingService) { }
 
   getMessages() {
@@ -67,6 +69,22 @@ export class AuthService {
   logOut() {
     sessionStorage.removeItem('currentUserToken');
     return true;
+  }
+
+  setUserRole(role: string): void {
+    this.userRole = role;
+  }
+
+  getUserRole(): string {
+    return this.userRole;
+  }
+
+  userData(data: any) {
+    this.userDatas = data;    
+  }
+
+  getData() {
+    return this.userDatas;    
   }
 
 }

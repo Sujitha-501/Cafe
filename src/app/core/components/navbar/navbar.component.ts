@@ -8,10 +8,18 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class NavbarComponent {
 
-  constructor(private authService: AuthService) {}
+  private role: string;
+
+  constructor(private authService: AuthService) {
+    this.role = authService.getUserRole();
+  }
 
   logOut() {
     this.authService.logOut();
+  }
+
+  isAdmin(): boolean {
+    return this.role === 'admin';
   }
 
 }

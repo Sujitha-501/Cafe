@@ -14,12 +14,12 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
   templateUrl: './manage-product.component.html',
   styleUrls: ['./manage-product.component.scss']
 })
-export class ManageProductComponent implements OnInit{
+export class ManageProductComponent implements OnInit {
 
 
   displayedColumns: string[] = ['id', 'categoryId', 'name', 'price', 'status', 'action'];
   dataSource: any;
-  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator
   // checked = true;
   active: any;
   message: any;
@@ -29,21 +29,25 @@ export class ManageProductComponent implements OnInit{
     private dialogService: DialogService,
     private snackbarService: SnackbarService,
     private authService: AuthService,
-    private dialog: MatDialog) {}
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
-      this.ngxService.start();
-      this.createProductTable();
+    this.ngxService.start();
+    this.createProductTable();
 
-      this.authService.messages.subscribe(res => this.message = res);
+    this.authService.messages.subscribe(res => this.message = res);
   }
 
   createProductTable() {
     this.userService.getProduct().subscribe((res: any) => {
-      console.log('products:', res);
-      this.ngxService.stop();
-      this.dataSource = new MatTableDataSource(res.response);
-      this.dataSource.paginator = this.paginator;
+      if (res) {
+        this.ngxService.stop();
+        this.dataSource = new MatTableDataSource(res.response);
+        this.dataSource.paginator = this.paginator;
+      } else {
+        this.ngxService.stop();
+      }
+
     })
   }
 
@@ -80,10 +84,10 @@ export class ManageProductComponent implements OnInit{
   onDelete(element: any) {
     const dialogRef = this.dialogService.openConfirmationDialog(this.message.DELETE, 'custome-dialog');
     dialogRef.afterClosed().subscribe((res: any) => {
-      if(res) {
+      if (res) {
         this.ngxService.start();
-        this.userService.deleteProduct({id: element.id}).subscribe((res: any) => {
-          if(res.deletePro) {
+        this.userService.deleteProduct({ id: element.id }).subscribe((res: any) => {
+          if (res.deletePro) {
             this.ngxService.stop();
             this.snackbarService.openSnackbar(this.message.DELETE_PRODUCT, 'Success');
             this.createProductTable();
@@ -93,10 +97,10 @@ export class ManageProductComponent implements OnInit{
     })
   }
 
-  onChange(status: any, id:any) {
+  onChange(status: any, id: any) {
     this.ngxService.start();
     var data = {
-      status :  status.toString(),
+      status: status.toString(),
       id: id
     }
     this.userService.updateProduct(data).subscribe((res: any) => {
@@ -104,7 +108,7 @@ export class ManageProductComponent implements OnInit{
       this.snackbarService.openSnackbar(this.message.PRODUCT_STATUS, 'Success');
     }, (error: any) => {
       this.ngxService.stop();
-      console.log(error);      
+      console.log(error);
     })
   }
 
