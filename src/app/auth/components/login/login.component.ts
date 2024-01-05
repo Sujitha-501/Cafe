@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   message: any;
   role!: string;
   status: any;
+  show!: boolean;
   userDetails: any[] = [];
   constructor(private router: Router,
     private snackbarService: SnackbarService,
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.required, Validators.pattern('[a-zA-Z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]),
-      password: new FormControl(null, Validators.required),
+      password: new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z0-9@#$%^&*]{5,}$')]),
     });
     this.authService.messages.subscribe(res => this.message = res);
   }

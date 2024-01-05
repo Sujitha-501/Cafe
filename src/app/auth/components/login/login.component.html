@@ -20,9 +20,13 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
-            <input matInput type="password" placeholder="password" formControlName="password">
+            <input matInput type="password" placeholder="password" [type]="show ? 'text' : 'password'"  formControlName="password">
+            <mat-icon matSuffix (click)="show =! show">{{show ? 'visibility' : 'visibility_off'}}</mat-icon>
             <mat-error *ngIf="loginForm?.get('password')?.hasError('required')">
               {{message?.FILED_REQUIRD}}
+            </mat-error>
+            <mat-error *ngIf="loginForm?.get('password')?.hasError('pattern')">
+              {{message?.PASSWORD_LENGTH}}
             </mat-error>
           </mat-form-field>
         </div>
