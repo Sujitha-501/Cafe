@@ -140,6 +140,9 @@ export class ManageOrdersComponent implements OnInit {
       return true;
     }
     if (!isShiftKey && !isAltKey && /^[0-9]$/.test(event.key)) {
+      if (event.target.value.length === 0 && event.key === '0') {
+        return false;
+      }
       return true;
     }
     event.preventDefault();

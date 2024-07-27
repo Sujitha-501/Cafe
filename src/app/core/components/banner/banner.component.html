@@ -4,37 +4,15 @@
   </button>
   <span class="tool-head">Bakery</span>
   <span class="example-spacer"></span>
-  <button mat-flat-button color="primary" (click)="openLoginDialog()">Login</button>
-  <button mat-flat-button color="primary" (click)="openSignupDialog()">Sign Up</button>
+  <button mat-raised-button color="primary" (click)="openLoginDialog()">Login</button>
+  <button mat-raised-button color="primary" (click)="openSignupDialog()">Sign Up</button>
 </mat-toolbar>
 <!-- <router-outlet></router-outlet> -->
 <div>
   <div fxLayout="column">
-    <div>
-      <div class="image-container" [ngClass]="{'imganime': imgAnimation, '': !imgAnimation}"
-        [style.background-image]="'url(' + array[selectedIndex].img + ')'">
-        <div class="text-container" fxLayout="column" fxLayoutAlign="center start">
-          <h1 class="head">{{array[selectedIndex].text1 }}</h1>
-          <p class="sub-heaad">{{array[selectedIndex].text2 }}</p>
-          <div class="button-cls" fxLayout="row" fxLayoutGap="0" style="margin-top: 30px;">
-            <span class="material-icons">arrow_right_alt</span>
-            <p class="btn">{{array[selectedIndex].btn }}</p>
-          </div>
-        </div>
-        <div class="num-container" fxLayout="column" fxLayoutAlign="center end" fxLayoutGap="3%">
-          <div *ngFor="let item of array; let i = index">
-            <div fxLayout="row" fxLayoutAlign="center center">
-              <div class="value" (click)="onClick(i)" [ngClass]="{'selected': selectedIndex===i}">0{{i+1}}</div>
-              <span [ngStyle]="{'display': selectedIndex ===i ? 'flex': 'none'}"
-                style="background-color: white;height: 5px;width: 15px;z-index: 2;"></span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="banner-image"></div>
+    <div class="footer">
+      <h1>Copyright @2024, Designed by SUJITHA</h1>
     </div>
   </div>
 </div>
-<app-best-seller></app-best-seller>
-<app-home></app-home>
-<app-category></app-category>
-<app-footer></app-footer>
